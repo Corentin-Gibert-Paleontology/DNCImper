@@ -2,7 +2,7 @@ Package: DNCImper
 Title: Assembly process identification based on SIMPER analysis
 Version: 0.0.1.0000
 Authors@R: c(person("Corentin", "Gibert", role = c("aut", "cre"),
-           email = "corentingibert@gmail.com"), person("Gilles", "Escarguel", email = "gilles.escarguel@univ-lyon1.fr"))
+           email = "corentingibert@gmail.com"), person("Gilles", "Escarguel", email = "gilles.escarguel@univ-lyon1.fr"), person("Annika", "Vilmi", email = "annika.vilmi@gmail.com"), person("Jianjun", "Wang", email = "jjwang@niglas.ac.cn"))
 Description: The package contains every functions developed around the Per-SIMPER and DNCI analysis. PerSIMPER is based on the SIMPER (i.e. Similarity Percentage) analysis created by Clarke in 1993. Based on similarity index, SIMPER produces a plot picturing the contribution of taxa to the OAD (overall dissimilarity) between 2 (or more) groups of assemblages. Per-SIMPER uses the empirical SIMPER plot and compare it with randomized plots computed by matrix permutation of the empirical matrix. Conditions on permutations (fixed rows, columns, or both) corresponds to Niche, Dispersal or Niche & Dispersal hypothesis. The closer the random profile to the empirical one, the more niche and/or dispersal processes played a role in the assemblage construction. DNCI index stand for Dispersal Niche Continuum Index. This new index based on PerSIMPER function transform the originaly qualitative results into a comparable and straighforward quantitative index. See Gibert & Escarguel 2019 and Vilmi et al. 2021.
 Depends: R (>= 3.10)
 Imports: dplyr, ggplot2, vegan
