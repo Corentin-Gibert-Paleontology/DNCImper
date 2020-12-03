@@ -1,4 +1,4 @@
-#titre PER-SIMPER-DNCI functions package
+##### PER-SIMPER-DNCI functions package
 
 CAUTION ---- If the error message "can't find function X" appears, use DNCImper:::NAME_Function (e.g. DNCImper:::PerSIMPER(Matrix, Group)) ---- CAUTION
 
