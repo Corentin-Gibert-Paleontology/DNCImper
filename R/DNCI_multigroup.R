@@ -6,7 +6,7 @@
 #' This function is based on DNCI_ses (for 2 group analysis) and PerSIMPER function E index return().
 #' The three distributions of E index (corresponding to the three hypothesis: niche, dispersal, niche+dispersal) are used to compute the DNCI index.
 #' If DNCI is significantly < 0 : dispersal || DNCI significantly > 0 : niche || DNCI +- CI ~~ 0 : dispersal+niche
-#' See Vilmi et al. 2021 Ecography for DNCI computation and more information on process identification as well as example with Chinese and US river communities.
+#' See Vilmi, Gibert et al. 2021 Ecography for DNCI computation and more information on process identification as well as example with Chinese and US river communities.
 #' More information in code and comments inside function file.
 #' @param x Sample/Taxa matrix with sample in row and taxa in column
 #' @param grouping Grouping vector, ex : c(1,1,1,1,2,2,2,2,2) : 2 groups or more ex2 : c(1,1,1,1,1,2,2,2,2,3,3,3,3)
