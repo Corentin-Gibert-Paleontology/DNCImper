@@ -8,12 +8,17 @@
 ##### ANNIKA VILMA AND JIANJUN WANG #####
 #########################################
 
+WELCOME IN DNCImper PACKAGE README.txt
+
+The main function to compute DNCI is DNCI_multigroup()
+It requires packages (vegan, dplyr, ggplot2)
+
 You can find in this zip/github file a
 tutorial file named "Tutorial_for_R.R"
 
 This file will help you to use PerSIMPER, 
 DNCI and others function associated with
-Vilmi et al. 2020 and Gibert & Escarguel 
+Vilmi, Gibert et al. 2021 and Gibert & Escarguel 
 2019. 
 
 Please feel free to contact me to highlight
