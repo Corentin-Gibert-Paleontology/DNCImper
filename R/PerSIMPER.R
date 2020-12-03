@@ -40,7 +40,9 @@ PerSIMPER <- function(matrixSIMP,
                           Nperm=1000,
                           plotSIMPER = TRUE){    # add the possibility to change the number of permutations
 
-
+library(vegan)
+library(ggplot2)
+library(dplyr)
   ################################################################################
   ## for every problems or questions, please contact me by mail or ResearchGate: ##
   ##### at corentingibert@gmail.com | corentin.gibert@univ-poitiers.fr ############
