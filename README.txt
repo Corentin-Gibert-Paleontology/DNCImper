@@ -13,8 +13,8 @@ WELCOME IN DNCImper PACKAGE README.txt
 The main function to compute DNCI is DNCI_multigroup()
 It requires packages (vegan, dplyr, ggplot2)
 
-You can find in this zip/github file a
-tutorial file named "Tutorial_for_R.R"
+You can find in https://github.com/Corentin-Gibert-Paleontology/PER-SIMPER-DNCI_Tutorial
+a tutorial file named "Tutorial_for_R.R".
 
 This file will help you to use PerSIMPER, 
 DNCI and others function associated with
