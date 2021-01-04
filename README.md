@@ -4,13 +4,13 @@ CAUTION ---- If the error message "can't find function X" appears:
 use DNCImper:::NAME_Function (e.g. DNCImper:::PerSIMPER(Matrix, Group)) ---- CAUTION
 
 #########################################
-########## HI and THANKS YOU ############
-###### FOR YOUR INTEREST IN PER #########
-#### -SIMPER AND DISPERSAL-NICHE ########
-####      -CONTINUUM INDEX       ########
-################# BY ####################
-## CORENTIN GIBERT AND GILLES ESCARGUEL #
-##### ANNIKA VILMA AND JIANJUN WANG #####
+ HI and THANKS YOU ############
+ FOR YOUR INTEREST IN PER #########
+ -SIMPER AND DISPERSAL-NICHE ########
+      -CONTINUUM INDEX       ########
+ BY ####################
+ CORENTIN GIBERT AND GILLES ESCARGUEL #
+ ANNIKA VILMA AND JIANJUN WANG #####
 #########################################
 
 WELCOME IN DNCImper PACKAGE README.txt
