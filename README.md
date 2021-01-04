@@ -25,7 +25,7 @@ WELCOME IN DNCImper PACKAGE README.txt
 The main function to compute DNCI is DNCI_multigroup()
 It requires packages (vegan, dplyr, ggplot2)
 
-Install by using (devtools package) and write : devtools::install_github("Corentin-Gibert-Paleontology/DNCImper")
+### Install by using (devtools package) and write : devtools::install_github("Corentin-Gibert-Paleontology/DNCImper")
 (error messages like "ERROR 404 not found" or "can't get to the repo" or "this R is version 3.XXXX, package 'DNCImper' requires R >= 3.10" should be solved with updating your R. to the new 4.0 version)
 
 You can find in https://github.com/Corentin-Gibert-Paleontology/PER-SIMPER-DNCI_Tutorial
