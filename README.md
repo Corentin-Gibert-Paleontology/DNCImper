@@ -1,13 +1,20 @@
 # PER-SIMPER-DNCI functions package
 
-CAUTION ---- If the error message "can't find function X" appears:
-use DNCImper:::NAME_Function (e.g. DNCImper:::PerSIMPER(Matrix, Group)) ---- CAUTION
+CAUTION --
+If the error message "can't find function X" appears:
+use DNCImper:::NAME_Function 
+(e.g. DNCImper:::PerSIMPER(Matrix, Group)) 
+or
+### To access informations on functions 
+(e.g. ?DNCImper:::PerSIMPER())
+
+-- CAUTION
 
 #########################################
  HI and THANKS YOU ############
  FOR YOUR INTEREST IN PER #########
  -SIMPER AND DISPERSAL-NICHE ########
-      -CONTINUUM INDEX       ########
+ -CONTINUUM INDEX       ########
  BY ####################
  CORENTIN GIBERT AND GILLES ESCARGUEL #
  ANNIKA VILMA AND JIANJUN WANG #####
@@ -19,7 +26,7 @@ The main function to compute DNCI is DNCI_multigroup()
 It requires packages (vegan, dplyr, ggplot2)
 
 Install by using (devtools package) and write : devtools::install_github("Corentin-Gibert-Paleontology/DNCImper")
-
+(error messages like "ERROR 404 not found" or "can't get to the repo" or "this R is version 3.XXXX, package 'DNCImper' requires R >= 3.10" should be solved with updating your R. to the new 4.0 version)
 
 You can find in https://github.com/Corentin-Gibert-Paleontology/PER-SIMPER-DNCI_Tutorial
 a tutorial file named "Tutorial_for_R.R".
