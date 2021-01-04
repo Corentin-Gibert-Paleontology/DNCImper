@@ -28,6 +28,8 @@ It requires packages (vegan, dplyr, ggplot2)
 ### Install by using (devtools package) and write : devtools::install_github("Corentin-Gibert-Paleontology/DNCImper")
 (error messages like "ERROR 404 not found" or "can't get to the repo" or "this R is version 3.XXXX, package 'DNCImper' requires R >= 3.10" should be solved with updating your R. to the new 4.0 version)
 
+### If devtools can't download the package, download manually the GitHub repository and install it with devtools:::install(DNCImper). Set your Working Directory in the folder containing the unzipped DNCImper repository.
+
 You can find in https://github.com/Corentin-Gibert-Paleontology/PER-SIMPER-DNCI_Tutorial
 a tutorial file named "Tutorial_for_R.R".
 
