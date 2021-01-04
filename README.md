@@ -1,6 +1,6 @@
 # PER-SIMPER-DNCI functions package
 
-CAUTION --
+CAUTION --<br/>
 If the error message "can't find function X" appears:
 use DNCImper:::NAME_Function 
 (e.g. DNCImper:::PerSIMPER(Matrix, Group)) 
@@ -10,15 +10,15 @@ or
 
 -- CAUTION
 
-#########################################
- HI and THANKS YOU ############
- FOR YOUR INTEREST IN PER #########
- -SIMPER AND DISPERSAL-NICHE ########
- -CONTINUUM INDEX       ########
- BY ####################
- CORENTIN GIBERT AND GILLES ESCARGUEL #
- ANNIKA VILMA AND JIANJUN WANG #####
-#########################################
+#########################################<br/>
+HI and THANKS YOU ############<br/>
+FOR YOUR INTEREST IN PER #########<br/>
+-SIMPER AND DISPERSAL-NICHE ########<br/>
+-CONTINUUM INDEX       ########<br/>
+BY ####################<br/>
+CORENTIN GIBERT AND GILLES ESCARGUEL #<br/>
+ANNIKA VILMA AND JIANJUN WANG #####<br/>
+#########################################<br/>
 
 WELCOME IN DNCImper PACKAGE README.txt
 
