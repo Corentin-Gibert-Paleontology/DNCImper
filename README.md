@@ -6,13 +6,13 @@ use DNCImper:::NAME_Function<br/>
 (e.g. DNCImper:::PerSIMPER(Matrix, Group))<br/> 
 
 #########################################<br/>
-HI and THANKS YOU ############<br/>
-FOR YOUR INTEREST IN PER #########<br/>
--SIMPER AND DISPERSAL-NICHE ########<br/>
--CONTINUUM INDEX       ########<br/>
-BY ####################<br/>
-CORENTIN GIBERT AND GILLES ESCARGUEL #<br/>
-ANNIKA VILMA AND JIANJUN WANG #####<br/>
+HI and THANKS YOU #######################<br/>
+FOR YOUR INTEREST IN PER ################<br/>
+-SIMPER AND DISPERSAL-NICHE #############<br/>
+-CONTINUUM INDEX       ##################<br/>
+BY ######################################<br/>
+CORENTIN GIBERT AND GILLES ESCARGUEL ####<br/>
+ANNIKA VILMA AND JIANJUN WANG ###########<br/>
 #########################################<br/>
 
 WELCOME IN DNCImper PACKAGE README.txt<br/>
