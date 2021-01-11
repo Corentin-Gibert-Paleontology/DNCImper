@@ -15,7 +15,7 @@ CORENTIN GIBERT AND GILLES ESCARGUEL ####<br/>
 ANNIKA VILMI AND JIANJUN WANG ###########<br/>
 #########################################<br/>
 
-WELCOME IN DNCImper PACKAGE README.txt<br/>
+WELCOME to the DNCImper PACKAGE README.txt<br/>
 
 The main function to compute DNCI is DNCI_multigroup()<br/>
 It requires packages (vegan, dplyr, ggplot2)<br/>
@@ -29,7 +29,7 @@ You can find in https://github.com/Corentin-Gibert-Paleontology/PER-SIMPER-DNCI_
 a tutorial file named "Tutorial_for_R.R".<br/>
 
 This file will help you to use PerSIMPER,<br/> 
-DNCI and others function associated with<br/>
+DNCI and other functions associated with<br/>
 Vilmi, Gibert et al. 2021 and Gibert & Escarguel<br/> 
 2019. 
 
@@ -49,8 +49,8 @@ annika.vilmi@gmail.com<br/>
 annika.vilmi@syke.fi<br/>
 
 ResearchGate:<br/>
-https://www.researchgate.net/profile/Corentin_Gibert
-https://www.researchgate.net/profile/Annika_Vilmi
+https://www.researchgate.net/profile/Corentin_Gibert<br/>
+https://www.researchgate.net/profile/Annika_Vilmi<br/>
 
 GitHub:<br/> 
 https://github.com/Corentin-Gibert-Paleontology
