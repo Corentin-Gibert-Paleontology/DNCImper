@@ -72,7 +72,7 @@ DNCI.ses_overall_symmetrized <- function(Mat, Group, id = "no_name", NbrReRun = 
     if(length(Number_ofpairs[1,]) > 2){
       #Analyse_Pairs <- PerSIMPER_onMatrix(Mat_Sampled, Group_Sampled, NomCluster = LETTERS[Unik_group], NS = FALSE,
       #                                    overall = FALSE)
-      Analyse_Overall <- DNCI.ses_overall(Mat_Sampled, Group_Sampled, id = id, Nperm = Nperm, count = count)
+      Analyse_Overall <- DNCImper:::DNCI.ses_overall(Mat_Sampled, Group_Sampled, id = id, Nperm = Nperm, count = count)
 
       if(x == 1)
       {
