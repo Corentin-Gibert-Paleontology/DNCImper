@@ -45,7 +45,7 @@
 DNCI.ses_overall <- function(x, grouping, id = "no_name", Nperm = 1000, count = TRUE, plotSIMPER = TRUE) { #this calculates the metric using PERSIMPER - now the output included DELTAd-n, sd of DELTA.d-n and confidence interval
   groups <- sort(unique(grouping))
   #results = PerSIMPER(x, grouping, log = TRUE, count = count)
-  results = PerSIMPER_overall(x, grouping, count = count, Nperm = Nperm, plotSIMPER = plotSIMPER)
+  results = DNCImper:::PerSIMPER_overall(x, grouping, count = count, Nperm = Nperm, plotSIMPER = plotSIMPER)
   E = results[["EcartCarreLog"]]
 
   #first calculate SES.d and SES.n based on E values from PERSIMPER
