@@ -48,13 +48,6 @@ DNCI_multigroup <- function(x, grouping,id = "no_name", Nperm = 1000, count = TR
 
   ddelta <- NULL
 
-  if(NCOL(group.combinations) == 1) #If only 2 groups are compared
-  {
-    ddelta <- DNCI.ses(x , grouping,id=id, Nperm = Nperm, count = count, plotSIMPER = plotSIMPER)
-  }
-  if(NCOL(group.combinations) > 1)
-  {
-
     for(i in 1:NCOL(group.combinations)) {
       splitx <- split(x,grouping)
 
@@ -94,7 +87,7 @@ DNCI_multigroup <- function(x, grouping,id = "no_name", Nperm = 1000, count = TR
                       rep(group.combinations[2,i], NROW(splitx[[group.combinations[2,i]]])))
       ddelta <- rbind(ddelta, DNCI.ses(x=paired.x,grouping=group.pair,id=id, Nperm = Nperm, count = count, plotSIMPER = plotSIMPER)) #here is the part that calculates the index based on PERSIMPER
     }
-  }
+  
   return(ddelta)
 }
 
