@@ -38,10 +38,10 @@
 
 ## To contact me : corentingibert@gmail.com or annika.vilmi@gmail.com (feel free)
 
-DNCI.ses <- function(x, grouping,id = "no_name", Nperm = 1000, count = TRUE, plotSIMPER = TRUE) { #this calculates the metric using PERSIMPER - now the output included DELTAd-n, sd of DELTA.d-n and confidence interval
+DNCI.ses <- function(x, grouping,id = "no_name", Nperm = 1000, count = TRUE, plotSIMPER = TRUE, dataTYPE = "prab") { #this calculates the metric using PERSIMPER - now the output included DELTAd-n, sd of DELTA.d-n and confidence interval
   groups <- sort(unique(grouping))
   stopifnot(length(groups) == 2)
-  results = PerSIMPER(x, grouping,  count = count, Nperm = Nperm, plotSIMPER = plotSIMPER)
+  results = PerSIMPER(x, grouping,  count = count, Nperm = Nperm, plotSIMPER = plotSIMPER, dataTYPE = dataTYPE)
   E = results[["EcartCarreLog"]]
 
   #first calculate SES.d and SES.n based on E values from PERSIMPER
