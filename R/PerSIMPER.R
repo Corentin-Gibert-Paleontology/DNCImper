@@ -126,7 +126,9 @@ library(dplyr)
     #Screen output of the number of iterations performed.
     #This option is used to indicate if the permutation function is unable to swap the matrix cells.
     #This incapacity is usually the result of a matrix too sparse in data (too many cells at 0).
+    SWAPcount <- 0
     repeat {
+      SWAPcount <- SWAPcount + 1
       v <- T
       dp4 <- permatfull(matrixSIMP, fixedmar = "columns", mtype = dataTYPE, times = 1)  #prab
       for(j in 1:length(dp4$perm[[1]][,2])) {
