@@ -57,8 +57,8 @@ library(dplyr)
 
   #Arguments :
 
-  #matrixSIMP <- Stores the matrix to use in SIMPER analysis (i.e. the result
-  #of the presence/absence or the abundance distribution of taxa in at least 2 clusters of assemblies)
+  #matrixSIMP <- Stores the matrix to use in SIMPER analysis 
+  #(i.e. the presence/absence or the abundance distribution of taxa in at least 2 clusters of assemblages)
   # LOCALITIES in LINES
   # TAXA in COLUMNS
 
@@ -80,7 +80,31 @@ library(dplyr)
   #e.g. dataTYPE = "count"
 
   #Nperm <- number of matrix permutation
-
+  
+  ####### Start here 
+ 
+  ###### Change abundance data (dataTYPE = "count") to relative abundance within sites with 1 as min(abundance) for the rarest taxa
+  ###### This change is necessary A. for increasing the speed of swap algorithm, B. to increase comparability between datasets, C. because swap is impossible with non integer (< 1) values
+  if(dataTYPE == "count")
+  {
+    if(min(matrixSIMP[1,matrixSIMP[1,] != 0]) != 1)
+    {
+      print("Absolute abundance modified for relative abundance")
+      tempMatrix <- matrixSIMP
+      
+      for(i in 1:length(matrixSIMP[,1]))
+      {
+        diff0 <- which(matrixSIMP[i,] != 0)
+        min0 <- min(matrixSIMP[i, diff0])
+        newLine <- round(matrixSIMP[i, diff0] * (1/min0))
+        tempMatrix[i, diff0] <- newLine
+      }
+      
+      matrixSIMP <- tempMatrix
+      
+    }
+    
+  }
   AnaSimp <- simper(matrixSIMP, Groups)   # summary(AnaSimp)
   #Classical SIMPER analysis computed on the compared groups
 
