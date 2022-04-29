@@ -117,12 +117,14 @@ library(dplyr)
 
   if(plotSIMPER == TRUE)
   {
-   # if(logSIMPER == TRUE) {
-   # plot(Pourcent_Contribution, col = "brown2", log="y", type="p",lwd = 1.5,
-   #      ylab ="%  contribution to dissimilarity", xlab="Species")
-   # } else {
+   maxPlot <- max(Pourcent_Contribution) + 5
+   if(maxPlot > 100)
+     {
+     maxPlot <- 100
+     }
+    
      plot(Pourcent_Contribution, col = "brown2", type="p",lwd = 1,
-         ylab ="% contribution to dissimilarity", xlab="Species")
+         ylab ="% contribution to dissimilarity", xlab="Species", ylim = c(0, maxPlot))
   #Ploting SIMPER results in percentage (in Log or not)
   }
 
