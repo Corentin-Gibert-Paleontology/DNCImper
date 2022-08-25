@@ -109,9 +109,9 @@ PerSIMPER_overall <- function(matrixSIMP,
   }
 
 
-  # set.seed(123456)  # add by jjwang
+  
   dp2 <- permatfull(matrixSIMP, fixedmar = "both", mtype = dataTYPE,  times = Nperm) #prab
-  # set.seed(123456)  # add by jjwang
+  
   dp3 <- permatfull(matrixSIMP, fixedmar ="rows" , mtype = dataTYPE, times = Nperm)  #prab
 
   #Randomization of the matrixSIMP matrix ; permatfull need to be used in order to swap cells under
@@ -132,15 +132,37 @@ PerSIMPER_overall <- function(matrixSIMP,
     #Screen output of the number of iterations performed.
     #This option is used to indicate if the permutation function is unable to swap the matrix cells.
     #This incapacity is usually the result of a matrix too sparse in data (too many cells at 0).
+    SWAPcount <- 0
     repeat {
+      SWAPcount <- SWAPcount + 1
       v <- T
       dp4 <- permatfull(matrixSIMP, fixedmar = "columns", mtype = dataTYPE, times = 1)  #prab
       for(j in 1:length(dp4$perm[[1]][,2])) {
-        if(sum(dp4$perm[[1]][j,]) == 0){v <- FALSE}
-      }
+        if(sum(dp4$perm[[1]][j,]) == 0){v <- FALSE
+             
+        if(SWAPcount > 50)
+          {
+          ### Looking for cells to swap from rich taxa and rich locality to empty locality
+          tempColSum <- apply(dp4$perm[[1]], 2, sum)
+          tempHigh_Col <- which(apply(dp4$perm[[1]], 2, sum) >= median(tempColSum))
+          tempMoove <- sample(tempHigh_Col, 1)
+          tempColSel <- dp4$perm[[1]][,tempMoove]
+          tempCel <-  which(tempColSel  > 0)
+          tempHigh_Row <- which(apply(dp4$perm[[1]][tempCel,], 1, sum) >= median(apply(dp4$perm[[1]][tempCel,], 1, sum))) 
+          tempMoove2 <- sample(tempHigh_Row, 1)
+          
+          #### Swapping
+          dp4$perm[[1]][tempCel[tempMoove2], tempMoove] <- 0
+          dp4$perm[[1]][j,tempMoove] <- 1
+          v <- TRUE
+          }                                  
+                                       
+         }
+        }
       if(v == TRUE) break
-    }
-
+      }
+    
+    
     simp2 <- simper(dp2$perm[[i]], Groups)
     simp3 <- simper(dp3$perm[[i]], Groups)
     simp4 <- simper(dp4$perm[[1]], Groups)
