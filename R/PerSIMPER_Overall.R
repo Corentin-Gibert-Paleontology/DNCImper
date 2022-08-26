@@ -133,34 +133,44 @@ PerSIMPER_overall <- function(matrixSIMP,
     #This option is used to indicate if the permutation function is unable to swap the matrix cells.
     #This incapacity is usually the result of a matrix too sparse in data (too many cells at 0).
     SWAPcount <- 0
-    repeat {
+        repeat {
       SWAPcount <- SWAPcount + 1
       v <- T
-      dp4 <- permatfull(matrixSIMP, fixedmar = "columns", mtype = dataTYPE, times = 1)  #prab
-      for(j in 1:length(dp4$perm[[1]][,2])) {
-        if(sum(dp4$perm[[1]][j,]) == 0){v <- FALSE
-             
-        if(SWAPcount > 50)
-          {
-          ### Looking for cells to swap from rich taxa and rich locality to empty locality
-          tempColSum <- apply(dp4$perm[[1]], 2, sum)
-          tempHigh_Col <- which(apply(dp4$perm[[1]], 2, sum) >= median(tempColSum))
-          tempMoove <- sample(tempHigh_Col, 1)
-          tempColSel <- dp4$perm[[1]][,tempMoove]
-          tempCel <-  which(tempColSel  > 0)
-          tempHigh_Row <- which(apply(dp4$perm[[1]][tempCel,], 1, sum) >= median(apply(dp4$perm[[1]][tempCel,], 1, sum))) 
-          tempMoove2 <- sample(tempHigh_Row, 1)
+      dp4 <- permatfull(matrixSIMP, fixedmar = "columns", 
+                        mtype = dataTYPE, times = 1)
+      
+      if(length(which(apply(dp4$perm[[1]], 1, sum) == 0)) != 0){v <- F}
+      if(v == F & SWAPcount > 200){
+      repeat{
+      for (j in 1:length(dp4$perm[[1]][, 2])) {
+        if (sum(dp4$perm[[1]][j, ]) == 0) {
           
-          #### Swapping
-          dp4$perm[[1]][tempCel[tempMoove2], tempMoove] <- 0
-          dp4$perm[[1]][j,tempMoove] <- 1
-          v <- TRUE
-          }                                  
-                                       
-         }
+          v <- FALSE
+            #Look for species dispersal capacity
+            tempColSum <- apply(dp4$perm[[1]], 2, sum)
+            #Select the species with the largest dispersal capacity (last quartile)
+            tempHigh_Col <- sample(which(apply(dp4$perm[[1]], 2, sum) >= quantile(tempColSum)[4]), 1)
+            #Look for the richness of localities where the species with the largest dispersal capacity is present
+            tempCel <- which(dp4$perm[[1]][,tempHigh_Col] > 0)
+            SelectedRows <- tempCel[which(apply(dp4$perm[[1]][tempCel,], 1, sum) >= quantile(apply(dp4$perm[[1]][tempCel,], 1, sum))[4])]
+            #Choose one of the 25 % richest locality 
+            SelectedCell <- sample(SelectedRows, 1)
+            #Replace 0 and 1
+            dp4$perm[[1]][SelectedCell, tempHigh_Col] <- 0
+            dp4$perm[[1]][j, tempHigh_Col] <- 1
+            #If 0 have been removed, the repeat loop break
+            if(length(which(apply(dp4$perm[[1]], 1, sum)== 0)) == 0)
+            {v <- TRUE}
         }
-      if(v == TRUE) break
       }
+        if (v == TRUE){break} 
+    }
+  }  
+      if(length(which(apply(dp4$perm[[1]], 1, sum)== 0)) == 0)
+      {
+        break 
+      }
+    }
     
     
     simp2 <- simper(dp2$perm[[i]], Groups)
