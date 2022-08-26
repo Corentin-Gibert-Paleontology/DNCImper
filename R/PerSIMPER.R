@@ -144,60 +144,64 @@ library(dplyr)
   df4 <- matrix(nrow = Nperm, ncol = length(matrixSIMP[2,]))
   #Generating matrices that will store the results (the ranked contribution of species to the OAD)
   #of the 1000 permutations of the original matrix
-
   jj = 0
-
-  for (i in 1:Nperm)  {
-    if(count == TRUE && i < 100 || count == TRUE && i > round(Nperm*0.90) ){print(i)}
-    #Screen output of the number of iterations performed.
-    #This option is used to indicate if the permutation function is unable to swap the matrix cells.
-    #This incapacity is usually the result of a matrix too sparse in data (too many cells at 0).
+  
+  for (i in 1:Nperm) {
+    if (count == TRUE && i < 100 || count == TRUE && i > 
+        round(Nperm * 0.9)) {
+      print(i)
+    }
     SWAPcount <- 0
     repeat {
       SWAPcount <- SWAPcount + 1
       v <- T
-      dp4 <- permatfull(matrixSIMP, fixedmar = "columns", mtype = dataTYPE, times = 1)  #prab
-      for(j in 1:length(dp4$perm[[1]][,2])) {
-        if(sum(dp4$perm[[1]][j,]) == 0){v <- FALSE
-             
-        if(SWAPcount > 50)
-          {
-          ### Looking for cells to swap from rich taxa and rich locality to empty locality
-          tempColSum <- apply(dp4$perm[[1]], 2, sum)
-          tempHigh_Col <- which(apply(dp4$perm[[1]], 2, sum) >= median(tempColSum))
-          tempMoove <- sample(tempHigh_Col, 1)
-          tempColSel <- dp4$perm[[1]][,tempMoove]
-          tempCel <-  which(tempColSel  > 0)
-          tempHigh_Row <- which(apply(dp4$perm[[1]][tempCel,], 1, sum) >= median(apply(dp4$perm[[1]][tempCel,], 1, sum))) 
-          tempMoove2 <- sample(tempHigh_Row, 1)
+      dp4 <- permatfull(matrixSIMP, fixedmar = "columns", 
+                        mtype = dataTYPE, times = 1)
+      
+      if(length(which(apply(dp4$perm[[1]], 1, sum) == 0)) != 0){v <- F}
+      if(v == F & SWAPcount > 200){
+      repeat{
+      for (j in 1:length(dp4$perm[[1]][, 2])) {
+        if (sum(dp4$perm[[1]][j, ]) == 0) {
           
-          #### Swapping
-          dp4$perm[[1]][tempCel[tempMoove2], tempMoove] <- 0
-          dp4$perm[[1]][j,tempMoove] <- 1
-          v <- TRUE
-          }                                  
-                                       
-         }
+          v <- FALSE
+            #Look for species dispersal capacity
+            tempColSum <- apply(dp4$perm[[1]], 2, sum)
+            #Select the species with the largest dispersal capacity (last quartile)
+            tempHigh_Col <- sample(which(apply(dp4$perm[[1]], 2, sum) >= quantile(tempColSum)[4]), 1)
+            #Look for the richness of localities where the species with the largest dispersal capacity is present
+            tempCel <- which(dp4$perm[[1]][,tempHigh_Col] > 0)
+            SelectedRows <- tempCel[which(apply(dp4$perm[[1]][tempCel,], 1, sum) >= quantile(apply(dp4$perm[[1]][tempCel,], 1, sum))[4])]
+            #Choose one of the 25 % richest locality 
+            SelectedCell <- sample(SelectedRows, 1)
+            #Replace 0 and 1
+            dp4$perm[[1]][SelectedCell, tempHigh_Col] <- 0
+            dp4$perm[[1]][j, tempHigh_Col] <- 1
+            #If 0 have been removed, the repeat loop break
+            if(length(which(apply(dp4$perm[[1]], 1, sum)== 0)) == 0)
+            {v <- TRUE}
         }
-      if(v == TRUE) break
       }
-
+        if (v == TRUE){break} 
+    }
+  }  
+      if(length(which(apply(dp4$perm[[1]], 1, sum)== 0)) == 0)
+      {
+        break 
+      }
+    }
     simp2 <- simper(dp2$perm[[i]], Groups)
     simp3 <- simper(dp3$perm[[i]], Groups)
     simp4 <- simper(dp4$perm[[1]], Groups)
-    #SIMPER analysis performed on each permutated matrix
-
-    df2[i,] <- sort(simp2[[1]]$average, decreasing = TRUE)
-    df3[i,] <- sort(simp3[[1]]$average, decreasing = TRUE)
-    df4[i,] <- sort(simp4[[1]]$average, decreasing = TRUE)
-    #Storage of SIMPER results (ranked contribution to OAD)
-
-    df2[i,] <- (df2[i,]/sum(df2[i,]))*100
-    df3[i,] <- (df3[i,]/sum(df3[i,]))*100
-    df4[i,] <- (df4[i,]/sum(df4[i,]))*100
-    #Conversion to percentage of SIMPER results
-  }   #
-
+    df2[i, ] <- sort(simp2[[1]]$average, decreasing = TRUE)
+    df3[i, ] <- sort(simp3[[1]]$average, decreasing = TRUE)
+    df4[i, ] <- sort(simp4[[1]]$average, decreasing = TRUE)
+    df2[i, ] <- (df2[i, ]/sum(df2[i, ])) * 100
+    df3[i, ] <- (df3[i, ]/sum(df3[i, ])) * 100
+    df4[i, ] <- (df4[i, ]/sum(df4[i, ])) * 100
+  }
+  
+  
   dn2 <- apply(df2, 2, sort)
   dn3 <- apply(df3, 2, sort)
   dn4 <- apply(df4, 2, sort)
