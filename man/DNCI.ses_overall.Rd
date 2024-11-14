@@ -10,7 +10,9 @@ DNCI.ses_overall(
   id = "no_name",
   Nperm = 1000,
   count = TRUE,
-  plotSIMPER = TRUE
+  dataTYPE = "prab",
+  plotSIMPER = TRUE,
+  parallelComputing = FALSE
 )
 }
 \arguments{
@@ -24,9 +26,11 @@ DNCI.ses_overall(
 
 \item{count}{Display the number of permutation done, can be usefull with very large or small matrix, default = TRUE}
 
+\item{dataTYPE}{Need to be set for presence/absence or abundance data ("count"), default = "prab" (presence_absence)}
+
 \item{plotSIMPER}{Display the SIMPER, PerSIMPER and E index plots, default = TRUE}
 
-\item{dataType}{Need to be set for presence/absence or abundance data ("count"), default = "prab" (presence_absence)}
+\item{parallelComputing}{Run PerSIMPER on half of the available cores/nodes}
 }
 \description{
 Quantitative identification of the main assembly process driving the overall dissimilarity contribution distribution (i.e. the empirical SIMPER profile structure).
@@ -36,12 +40,10 @@ If DNCI is significantly < 0 : dispersal || DNCI significantly > 0 : niche || DN
 -under development-
 }
 \examples{
-A <- DNCImper:::DNCI.ses_overall(Matrix, Group)
+A <- DNCImper:::DNCI.ses_overall(DNCImper::Matrix_4groups, DNCImper::Group4)
 #where Matrix is a presence/absence matrix with taxa in column and sample in row
 #and Group is a vector with length() == number of rows/samples in Matrix, 3 groups or more.
 #
-B <- DNCImper:::DNCI.ses_overall(Matrix, Group, Nperm = 100, count = FALSE, plotSIMPER = FALSE)
+B <- DNCImper:::DNCI.ses_overall(DNCImper::Matrix_4groups, DNCImper::Group4, Nperm = 100, count = FALSE, plotSIMPER = FALSE)
 #In this example, same data are analysed, with 100 permutations, with no countdown and no plots
-
-
 }

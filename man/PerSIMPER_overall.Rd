@@ -7,11 +7,11 @@
 PerSIMPER_overall(
   matrixSIMP,
   Groups,
-  leg = FALSE,
   count = TRUE,
   dataTYPE = "prab",
   Nperm = 1000,
-  plotSIMPER = TRUE
+  plotSIMPER = TRUE,
+  parallelComputing = FALSE
 )
 }
 \arguments{
@@ -19,15 +19,15 @@ PerSIMPER_overall(
 
 \item{Groups}{Grouping vector, ex : c(1,1,1,1,2,2,2,2,3,3,3,3,3,4,4,4,4) : 3 groups or more}
 
-\item{leg}{Display the legend on PerSIMPER profile, default = FALSE}
-
 \item{count}{Display the number of permutation done, can be usefull with very large or small matrix, default = TRUE}
+
+\item{dataTYPE}{Need to be set for presence/absence or abundance data ("count"), default = "prab" (presence_absence)}
 
 \item{Nperm}{Number of permutation, default = 1000, should be change to 100 for robustness analysis}
 
 \item{plotSIMPER}{Display the SIMPER, PerSIMPER and E index plots, default = TRUE}
 
-\item{dataType}{Need to be set for presence/absence or abundance data ("count"), default = "prab" (presence_absence)}
+\item{parallelComputing}{Run PerSIMPER on half of the available cores/nodes}
 }
 \description{
 This function is the basis of DNCI_ses_overall. Overall dissimilarity contribution of taxa is obtained by computing the mean contribution of pairwise dissimilarity of taxa for each pairs of assemblages. -Under development-
@@ -41,6 +41,4 @@ A <- DNCImper:::PerSIMPER_overall(Matrix, Group)
 #
 B <- DNCImper:::PerSIMPER_overall(Matrix, Group, Nperm = 100, count = FALSE, plotSIMPER = FALSE)
 #In this example, same data are analysed, with 100 permutations, with no countdown and no plots
-
-
 }

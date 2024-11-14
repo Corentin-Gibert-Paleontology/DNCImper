@@ -10,7 +10,9 @@ DNCI.ses(
   id = "no_name",
   Nperm = 1000,
   count = TRUE,
-  plotSIMPER = TRUE
+  plotSIMPER = TRUE,
+  dataTYPE = "prab",
+  parallelComputing = FALSE
 )
 }
 \arguments{
@@ -26,7 +28,9 @@ DNCI.ses(
 
 \item{plotSIMPER}{Display the SIMPER, PerSIMPER and E index plots, default = TRUE}
 
-\item{dataType}{Need to be set for presence/absence or abundance data ("count"), default = "prab" (presence_absence)}
+\item{dataTYPE}{Need to be set for presence/absence or abundance data ("count"), default = "prab" (presence_absence)}
+
+\item{parallelComputing}{Run PerSIMPER on half of the available cores/nodes}
 }
 \description{
 Quantitative identification of the main assembly process.
@@ -43,6 +47,4 @@ A <- DNCImper:::DNCI.ses(Matrix, Group)
 #
 B <- DNCImper:::DNCI.ses(Matrix, Group, Nperm = 100, count = FALSE, plotSIMPER = FALSE)
 #In this example, same data are analysed, with 100 permutations, with no countdown and no plots
-
-
 }

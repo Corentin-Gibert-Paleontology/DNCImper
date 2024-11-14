@@ -11,7 +11,9 @@ DNCI_multigroup(
   Nperm = 1000,
   count = TRUE,
   symmetrize = FALSE,
-  plotSIMPER = TRUE
+  plotSIMPER = TRUE,
+  dataTYPE = "prab",
+  parallelComputing = FALSE
 )
 }
 \arguments{
@@ -29,10 +31,13 @@ DNCI_multigroup(
 
 \item{plotSIMPER}{Display the SIMPER, PerSIMPER and E index plots, default = TRUE}
 
-\item{dataType}{Need to be set for presence/absence or abundance data ("count"), default = "prab" (presence_absence)}
+\item{dataTYPE}{Need to be set for presence/absence or abundance data ("count"), default = "prab" (presence_absence)}
+
+\item{parallelComputing}{Run PerSIMPER on half of the available cores/nodes}
 }
 \description{
 This function is a wraper for DNCI.ses() function. Can be used with 2 group or more.
+Warning: if you are comparing groups of different size, use symmetrize = TRUE and repeat the computation N times.
 }
 \details{
 Quantitative identification of the main assembly process. Pairwise analysis.
@@ -45,10 +50,8 @@ More information in code and comments inside function file.
 \examples{
 A <- DNCImper:::DNCI_multigroup(Matrix, Group)
 #where Matrix is a presence/absence matrix with taxa in column and sample in row
-#and Group is a vector with length() == number of rows/samples in Matrix, 2 groups ONLY
+#and Group is a vector with length() == number of rows/samples in Matrix, 2 groups, 1 pair
 #
-B <- DNCImper:::DNCI_multigroup(Matrix, Group, Nperm = 100, count = FALSE, plotSIMPER = FALSE)
-#In this example, same data are analysed, with 100 permutations, with no countdown and no plots
-
-
+B <- DNCImper:::DNCI_multigroup(DNCImper::Matrix_4groups, DNCImper::Group4, Nperm = 100, count = FALSE, plotSIMPER = FALSE)
+#In this example, four groups (so 6 pairs) are analysed, with 100 permutations, with no countdown and no plots
 }
