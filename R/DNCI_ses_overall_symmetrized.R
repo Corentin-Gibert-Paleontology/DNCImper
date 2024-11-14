@@ -6,23 +6,26 @@
 #' -under development-
 #' Group are made even by subsampling largest group to the size of the smallest ! CAUTION ! Do rerun for robust results
 #' -under development-
-#' @param x Sample/Taxa matrix with sample in row and taxa in column
-#' @param grouping Grouping vector, ex : c(1,1,1,1,2,2,2,2,2,3,3,3) : 3 groups or more
+#' @param Mat Sample/Taxa matrix with sample in row and taxa in column
+#' @param Group Grouping vector, ex : c(1,1,1,1,2,2,2,2,2,3,3,3) : 3 groups or more
 #' @param id Name of the dataset, default = "no_name"
 #' @param count Display the number of permutation done, can be usefull with very large or small matrix, default = TRUE
-#' @param dataType Need to be set for presence/absence or abundance data ("count"), default = "prab" (presence_absence)
+#' @param dataTYPE Need to be set for presence/absence or abundance data ("count"), default = "prab" (presence_absence)
 #' @param Nperm Number of permutation, default = 1000, should be change to 100 for robustness analysis
 #' @param plotSIMPER Display the SIMPER, PerSIMPER and E index plots, default = TRUE
 #' @param NbrReRun Number of iteration to obtain mean DNCI_overall values with even groups
-#' @examples A <- DNCImper:::DNCI.ses_overall(Matrix, Group)
+#' @param parallelComputing Run PerSIMPER_overall on half of the available cores/nodes
+#' @examples A <- DNCImper:::DNCI.ses_overall_symmetrized(DNCImper::Matrix_4groups, DNCImper::Group4, NbrReRun = 10)
 #' @examples #where Matrix is a presence/absence matrix with taxa in column and sample in row
-#' @examples #and Group is a vector with length() == number of rows/samples in Matrix, 3 groups or more.
+#' @examples #and Group is a vector with length() == number of rows/samples in Matrix, 3 groups or more; 10 reruns (default NbrReRun is 100).
 #' @examples #
-#' @examples B <- DNCImper:::DNCI.ses_overall(Matrix, Group, Nperm = 100, count = FALSE, plotSIMPER = FALSE)
-#' @examples #In this example, same data are analysed, with 100 permutations, with no countdown and no plots
+#' @examples B <- DNCImper:::DNCI.ses_overall_symmetrized(DNCImper::Matrix_4groups, DNCImper::Group4, NbrReRun = 10, Nperm = 100, count = FALSE, plotSIMPER = FALSE)
+#' @examples #In this example, same data are analysed, with 100 permutations and 10 reruns (default NbrReRun is 100), with no countdown and no plots
+#' @importFrom graphics legend lines title
+#' @importFrom stats median quantile sd
+#' @importFrom utils combn
 #'
 #'
-
 
 ################ UNDER DEVELOPMENT ######################
 ## To contact me : corentingibert@gmail.com (feel free)
@@ -48,8 +51,14 @@
 ##### BUT (!) you can choose the number of iteration to
 ######## compute mean robust overall DNCI value : NbrRerun
 
-DNCI.ses_overall_symmetrized <- function(Mat, Group, id = "no_name", NbrReRun = 100, Nperm = 100, count = FALSE)
+DNCI.ses_overall_symmetrized <- function(Mat, Group, id = "no_name", NbrReRun = 100, dataTYPE = "prab",
+                                                 Nperm = 100, plotSIMPER = TRUE, count = FALSE, parallelComputing = FALSE)
 {
+  warning("This function is a wrapper of PerSIMPER_overall and DNCI_overall functions")
+  warning("It is still under developement")
+  warning("Please use NbrReRun argument to obtain mean/median results based on multiple resampling")
+  warning("Keep in mind that large group will be resampled to the size of the smallest one")
+  warning("If a large gap exist between groups size, please consider large number of replicate (NbrReRun) and/or exclude the smallest group")
   Number_ofpairs <- combn(1:length(unique(Group)), 2)
   Unik_group <- unique(Group)
 
@@ -58,7 +67,7 @@ DNCI.ses_overall_symmetrized <- function(Mat, Group, id = "no_name", NbrReRun = 
   for(x in 1:NbrReRun)
   {
     SampleGroup <- c()
-    for(y in 1:length(Unik_group)) #CHANGER PAR LA
+    for(y in 1:length(Unik_group))
     {
       SampleGroup <- c(SampleGroup, sample(which(Group == y), min(table(Group))))
     }
@@ -70,9 +79,9 @@ DNCI.ses_overall_symmetrized <- function(Mat, Group, id = "no_name", NbrReRun = 
     }
 
     if(length(Number_ofpairs[1,]) > 2){
-      #Analyse_Pairs <- PerSIMPER_onMatrix(Mat_Sampled, Group_Sampled, NomCluster = LETTERS[Unik_group], NS = FALSE,
-      #                                    overall = FALSE)
-      Analyse_Overall <- DNCImper:::DNCI.ses_overall(Mat_Sampled, Group_Sampled, id = id, Nperm = Nperm, count = count)
+
+      Analyse_Overall <- DNCImper:::DNCI.ses_overall(Mat_Sampled, Group_Sampled, id = id, Nperm = Nperm, plotSIMPER = plotSIMPER,
+                                                 count = count, dataTYPE = dataTYPE, parallelComputing = parallelComputing)
 
       if(x == 1)
       {

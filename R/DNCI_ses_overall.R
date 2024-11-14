@@ -9,15 +9,19 @@
 #' @param grouping Grouping vector, ex : c(1,1,1,1,2,2,2,2,2,3,3,3) : 3 groups or more
 #' @param id Name of the dataset, default = "no_name"
 #' @param count Display the number of permutation done, can be usefull with very large or small matrix, default = TRUE
-#' @param dataType Need to be set for presence/absence or abundance data ("count"), default = "prab" (presence_absence)
+#' @param dataTYPE Need to be set for presence/absence or abundance data ("count"), default = "prab" (presence_absence)
 #' @param Nperm Number of permutation, default = 1000, should be change to 100 for robustness analysis
 #' @param plotSIMPER Display the SIMPER, PerSIMPER and E index plots, default = TRUE
-#' @examples A <- DNCImper:::DNCI.ses_overall(Matrix, Group)
+#' @param parallelComputing Run PerSIMPER on half of the available cores/nodes
+#' @examples A <- DNCImper:::DNCI.ses_overall(DNCImper::Matrix_4groups, DNCImper::Group4)
 #' @examples #where Matrix is a presence/absence matrix with taxa in column and sample in row
 #' @examples #and Group is a vector with length() == number of rows/samples in Matrix, 3 groups or more.
 #' @examples #
-#' @examples B <- DNCImper:::DNCI.ses_overall(Matrix, Group, Nperm = 100, count = FALSE, plotSIMPER = FALSE)
+#' @examples B <- DNCImper:::DNCI.ses_overall(DNCImper::Matrix_4groups, DNCImper::Group4, Nperm = 100, count = FALSE, plotSIMPER = FALSE)
 #' @examples #In this example, same data are analysed, with 100 permutations, with no countdown and no plots
+#' @importFrom graphics legend lines title
+#' @importFrom stats median quantile sd
+#' @importFrom utils combn
 #'
 #'
 
@@ -42,10 +46,11 @@
 
 ##### Same arguments and results as in DNCI_ses.R
 
-DNCI.ses_overall <- function(x, grouping, id = "no_name", Nperm = 1000, count = TRUE, plotSIMPER = TRUE) { #this calculates the metric using PERSIMPER - now the output included DELTAd-n, sd of DELTA.d-n and confidence interval
+DNCI.ses_overall <- function(x, grouping, id = "no_name", Nperm = 1000, count = TRUE, dataTYPE = "prab",
+                                     plotSIMPER = TRUE, parallelComputing = FALSE) { #this calculates the metric using PERSIMPER - now the output included DELTAd-n, sd of DELTA.d-n and confidence interval
   groups <- sort(unique(grouping))
   #results = PerSIMPER(x, grouping, log = TRUE, count = count)
-  results = DNCImper:::PerSIMPER_overall(x, grouping, count = count, Nperm = Nperm, plotSIMPER = plotSIMPER)
+  results = DNCImper:::PerSIMPER_overall(x, grouping, count = count, Nperm = Nperm, dataTYPE = dataTYPE, plotSIMPER = plotSIMPER, parallelComputing = parallelComputing)
   E = results[["EcartCarreLog"]]
 
   #first calculate SES.d and SES.n based on E values from PERSIMPER
