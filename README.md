@@ -1,12 +1,13 @@
 # PER-SIMPER-DNCI functions package: V 1.6
 
-### Warning -- Use R >= 4.0 <br/>
-### If the error message "can't find function X" appears:<br/>
+#### Warning -- Use R >= 4.0 <br/>
+If the error message "can't find function X" appears:<br/>
 use DNCImper:::NAME_Function<br/> 
-(e.g. DNCImper:::PerSIMPER(Matrix, Group))<br/> 
+e.g. DNCImper:::PerSIMPER(Matrix, Group)<br/> 
 
-### To access informations on functions<br/> 
-(e.g. ?DNCImper:::PerSIMPER())<br/>
+To access informations on functions, you can use the classical ? call in R/RStudio<br/> 
+e.g. ?DNCImper:::PerSIMPER())<br/>
+A large documentation, argument explanation and examples are associated with each functions<br/>
 
 #######################################<br/>
 HI and THANK YOU ########################<br/>
