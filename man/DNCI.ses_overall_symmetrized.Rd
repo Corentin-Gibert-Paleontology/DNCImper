@@ -9,26 +9,31 @@ DNCI.ses_overall_symmetrized(
   Group,
   id = "no_name",
   NbrReRun = 100,
+  dataTYPE = "prab",
   Nperm = 100,
-  count = FALSE
+  plotSIMPER = TRUE,
+  count = FALSE,
+  parallelComputing = FALSE
 )
 }
 \arguments{
+\item{Mat}{Sample/Taxa matrix with sample in row and taxa in column}
+
+\item{Group}{Grouping vector, ex : c(1,1,1,1,2,2,2,2,2,3,3,3) : 3 groups or more}
+
 \item{id}{Name of the dataset, default = "no_name"}
 
 \item{NbrReRun}{Number of iteration to obtain mean DNCI_overall values with even groups}
 
+\item{dataTYPE}{Need to be set for presence/absence or abundance data ("count"), default = "prab" (presence_absence)}
+
 \item{Nperm}{Number of permutation, default = 1000, should be change to 100 for robustness analysis}
+
+\item{plotSIMPER}{Display the SIMPER, PerSIMPER and E index plots, default = TRUE}
 
 \item{count}{Display the number of permutation done, can be usefull with very large or small matrix, default = TRUE}
 
-\item{x}{Sample/Taxa matrix with sample in row and taxa in column}
-
-\item{grouping}{Grouping vector, ex : c(1,1,1,1,2,2,2,2,2,3,3,3) : 3 groups or more}
-
-\item{dataType}{Need to be set for presence/absence or abundance data ("count"), default = "prab" (presence_absence)}
-
-\item{plotSIMPER}{Display the SIMPER, PerSIMPER and E index plots, default = TRUE}
+\item{parallelComputing}{Run PerSIMPER_overall on half of the available cores/nodes}
 }
 \description{
 Quantitative identification of the main assembly process driving the overall dissimilarity contribution distribution (i.e. the empirical SIMPER profile structure).
@@ -38,12 +43,10 @@ Group are made even by subsampling largest group to the size of the smallest ! C
 -under development-
 }
 \examples{
-A <- DNCImper:::DNCI.ses_overall(Matrix, Group)
+A <- DNCImper:::DNCI.ses_overall_symmetrized(DNCImper::Matrix_4groups, DNCImper::Group4, NbrReRun = 10)
 #where Matrix is a presence/absence matrix with taxa in column and sample in row
-#and Group is a vector with length() == number of rows/samples in Matrix, 3 groups or more.
+#and Group is a vector with length() == number of rows/samples in Matrix, 3 groups or more; 10 reruns (default NbrReRun is 100).
 #
-B <- DNCImper:::DNCI.ses_overall(Matrix, Group, Nperm = 100, count = FALSE, plotSIMPER = FALSE)
-#In this example, same data are analysed, with 100 permutations, with no countdown and no plots
-
-
+B <- DNCImper:::DNCI.ses_overall_symmetrized(DNCImper::Matrix_4groups, DNCImper::Group4, NbrReRun = 10, Nperm = 100, count = FALSE, plotSIMPER = FALSE)
+#In this example, same data are analysed, with 100 permutations and 10 reruns (default NbrReRun is 100), with no countdown and no plots
 }
