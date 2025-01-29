@@ -1,5 +1,12 @@
 # PER-SIMPER-DNCI functions package: V 1.6
 
+#######################################<br/>
+
+###### DNCImper is in maintenance, as a bug has been found by a user, it will be reuploaded soon with a corrected version #####
+
+#######################################<br/>
+
+
 #### Warning -- Use R >= 4.0 <br/>
 If the error message "can't find function X" appears:<br/>
 use DNCImper:::NAME_Function<br/> 
