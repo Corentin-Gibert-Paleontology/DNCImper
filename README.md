@@ -1,11 +1,6 @@
-# PER-SIMPER-DNCI functions package: V 1.6
+# PER-SIMPER-DNCI functions package: V 1.7
 
-#######################################<br/>
-
-###### DNCImper is in maintenance, as a bug has been found by a user, it will be reuploaded soon with a corrected version #####
-
-#######################################<br/>
-
+A bug has been removed from core function PerSIMPER and PerSIMPER_overall that could have affected a bit the DNCI results. 
 
 #### Warning -- Use R >= 4.0 <br/>
 If the error message "can't find function X" appears:<br/>
@@ -24,6 +19,7 @@ FOR YOUR INTEREST IN PER-SIMPER ###########<br/>
 BY CORENTIN GIBERT (author, creator) ##########<br/> 
 AND GILLES ESCARGUEL (author) ##############<br/>
 ANNIKA VILMI AND JIANJUN WANG ###########<br/>
+Thanks to MAXIME LOPEZ for bug correction #####<br/>
 #######################################<br/>
 
 WELCOME to the DNCImper PACKAGE README.txt<br/>
