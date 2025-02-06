@@ -19,7 +19,7 @@ FOR YOUR INTEREST IN PER-SIMPER ###########<br/>
 BY CORENTIN GIBERT (author, creator) ##########<br/> 
 AND GILLES ESCARGUEL (author) ##############<br/>
 ANNIKA VILMI AND JIANJUN WANG ###########<br/>
-Thanks to MAXIME LOPEZ for bug correction #####<br/>
+Thanks to MAXIME LOGEZ for bug correction #####<br/>
 #######################################<br/>
 
 WELCOME to the DNCImper PACKAGE README.txt<br/>
